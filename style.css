@@ -1,0 +1,912 @@
+/* ==========================================================
+   MediCare Portal — Royal Plum & Gold Aesthetic
+   Wine | Champagne | Steel | Mauve | Ivory-Gold | Steel Blue
+   ========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #f7f5f9 0%, #f5f0eb 50%, #f2f4f8 100%);
+  color: #2c2135;
+  line-height: 1.55;
+  min-height: 100vh;
+}
+
+/* ==========================================================
+   ANIMATIONS
+   ========================================================== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.93);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================================
+   TOP NAV — Deep plum / wine
+   ========================================================== */
+.top-nav {
+  background: #0077B6;
+  color: #fff;
+  padding: 0 32px;
+  height: 62px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 4px 20px rgba(74, 25, 66, 0.35);
+  animation: fadeInDown 0.5s ease both;
+}
+
+.nav-brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-brand i {
+  font-size: 1.4rem;
+  color: #d4a853;
+  transition: transform 0.25s ease;
+}
+
+.nav-brand:hover i {
+  transform: rotate(12deg) scale(1.08);
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-links a {
+  color: #e8c8e0;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  transition: background 0.2s, color 0.2s, transform 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a:hover {
+  background: #d4a853;
+  color: #4a1942;
+  border-color: #d4a853;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================
+   HERO BANNER — Champagne / soft gold
+   ========================================================== */
+.page-banner {
+  background: linear-gradient(135deg, #fdf5e6 0%, #f7e8c8 40%, #f0ddb0 100%);
+  color: #2c2135;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  min-height: 155px;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 3px solid #d4a853;
+  animation: fadeInUp 0.55s ease 0.1s both;
+}
+
+.page-banner::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: rgba(212, 168, 83, 0.08);
+  border-radius: 50%;
+  top: -100px;
+  right: 160px;
+  pointer-events: none;
+}
+
+.main-banner {
+  z-index: 1;
+}
+
+.page-banner h1 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  margin-bottom: 7px;
+  line-height: 1.25;
+  color: #4a1942;
+}
+
+.page-banner p {
+  font-size: 0.95rem;
+  color: #6b2d5b;
+}
+
+.image {
+  height: 148px;
+  object-fit: contain;
+  border-radius: 10px;
+  flex-shrink: 0;
+  opacity: 0.93;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+  z-index: 1;
+}
+
+/* ==========================================================
+   MAIN LAYOUT
+   ========================================================== */
+.main-wrapper {
+  max-width: 1240px;
+  margin: 28px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 22px;
+  align-items: start;
+}
+
+/* ==========================================================
+   LEFT PANEL
+   ========================================================== */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* --- Filter Card — Cool steel blue --- */
+.filter-card {
+  background: linear-gradient(135deg, #e8ecf4 0%, #f0f3f9 100%);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 10px rgba(70, 80, 120, 0.1);
+  border-left: 4px solid #6673a8;
+  animation: fadeInUp 0.5s ease 0.2s both;
+}
+
+.filter-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3a4070;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-card h3 i {
+  color: #6673a8;
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.filter-row:last-child {
+  margin-bottom: 0;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-field label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #4a5080;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-field label i {
+  color: #6673a8;
+  font-size: 0.8rem;
+}
+
+.form-field select,
+.form-field input {
+  padding: 9px 12px;
+  border: 1.5px solid #c8cee0;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: #fafbfe;
+  color: #2c2135;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-field input::placeholder {
+  color: #9ea3b8;
+}
+
+.form-field select:focus,
+.form-field input:focus {
+  border-color: #6673a8;
+  box-shadow: 0 0 0 3px rgba(102, 115, 168, 0.15);
+  background: #fff;
+}
+
+/* --- List Header --- */
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 2px;
+}
+
+.list-header h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #4a1942;
+}
+
+.list-header h2 span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #6b2d5b;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  padding: 0 6px;
+  margin-left: 4px;
+}
+
+.tip-text {
+  font-size: 0.78rem;
+  color: #9ea3b8;
+  font-style: italic;
+}
+
+/* --- Doctor Cards — Soft mauve / dusty pink --- */
+.doctor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.animate-card {
+  animation: fadeInLeft 0.38s ease both;
+}
+
+.doctor-item {
+  background: linear-gradient(135deg, #f5eef5 0%, #efe4f0 100%);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  border: 2px solid #dcc8dc;
+  box-shadow: 0 2px 8px rgba(107, 45, 91, 0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  cursor: pointer;
+}
+
+.doctor-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(107, 45, 91, 0.15);
+  border-color: #b88aac;
+}
+
+.doctor-item.active-doctor {
+  border-color: #d4a853;
+  background: linear-gradient(135deg, #fdf5e6, #f7e8c8);
+  box-shadow: 0 4px 14px rgba(212, 168, 83, 0.18);
+}
+
+.doc-card-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+
+.doc-avatar {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: linear-gradient(135deg, #e8ecf4, #d0d6e8);
+  padding: 5px;
+  border: 2.5px solid #6b2d5b;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(107, 45, 91, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.doctor-item:hover .doc-avatar {
+  transform: scale(1.09);
+  box-shadow: 0 4px 14px rgba(107, 45, 91, 0.28);
+}
+
+.doctor-item.active-doctor .doc-avatar {
+  border-color: #d4a853;
+  background: linear-gradient(135deg, #f7e8c8, #f0ddb0);
+}
+
+.doc-info-main h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #4a1942;
+  margin-bottom: 4px;
+}
+
+.spec-badge {
+  display: inline-block;
+  background: linear-gradient(90deg, #6b2d5b, #8e4580);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+.doctor-item.active-doctor .spec-badge {
+  background: linear-gradient(90deg, #b8862d, #d4a853);
+}
+
+.doc-meta {
+  font-size: 0.8rem;
+  color: #6b6b6b;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.doc-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.doc-meta i {
+  color: #8e4580;
+  width: 13px;
+  font-size: 0.75rem;
+}
+
+.doc-action-col {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.fee-tag {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #8b6914;
+  background: linear-gradient(90deg, #f7e8c8, #f0ddb0);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.btn-select-doc {
+  background: linear-gradient(90deg, #6b2d5b, #8e4580);
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.17s, box-shadow 0.17s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(107, 45, 91, 0.3);
+}
+
+.btn-select-doc:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(107, 45, 91, 0.4);
+}
+
+.btn-select-doc:active {
+  transform: scale(0.95);
+}
+
+.btn-select-doc:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(107, 45, 91, 0.25);
+}
+
+.doctor-item.active-doctor .btn-select-doc {
+  background: linear-gradient(90deg, #b8862d, #d4a853);
+  box-shadow: 0 2px 8px rgba(212, 168, 83, 0.35);
+}
+
+/* ==========================================================
+   RIGHT PANEL — Booking Form — Ivory / warm cream with gold
+   ========================================================== */
+.right-panel {
+  position: sticky;
+  top: 76px;
+}
+
+.booking-card {
+  background: linear-gradient(135deg, #fefcf5 0%, #faf3e0 100%);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 2px 12px rgba(212, 168, 83, 0.12);
+  border-left: 4px solid #d4a853;
+  animation: slideRight 0.55s ease 0.25s both;
+}
+
+.booking-header {
+  border-bottom: 1.5px solid #e8d5a8;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.booking-header h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #4a1942;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.booking-header h3 i {
+  color: #d4a853;
+}
+
+.booking-header p {
+  font-size: 0.82rem;
+  color: #8b6914;
+  margin-top: 3px;
+}
+
+/* Selected Doctor Preview Box */
+.selected-doc-box {
+  background: #fefaf0;
+  border: 1.5px dashed #e0c880;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+
+.selected-doc-box.has-doctor {
+  background: linear-gradient(135deg, #f5eef5, #efe4f0);
+  border: 1.5px solid #8e4580;
+  animation: scaleIn 0.3s ease both;
+}
+
+.box-placeholder {
+  text-align: center;
+  color: #8b6914;
+  font-size: 0.84rem;
+  padding: 8px 0;
+}
+
+.box-placeholder i {
+  font-size: 1.5rem;
+  color: #e0c880;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.doc-picked-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.doc-picked-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: contain;
+  background: linear-gradient(135deg, #e8ecf4, #d0d6e8);
+  padding: 4px;
+  border: 2px solid #6b2d5b;
+  flex-shrink: 0;
+}
+
+.doc-picked-details h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #4a1942;
+  margin-bottom: 2px;
+}
+
+.doc-picked-details p {
+  font-size: 0.8rem;
+  color: #6b6b6b;
+}
+
+/* Form Controls */
+.form-group {
+  margin-bottom: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 0.77rem;
+  font-weight: 700;
+  color: #6b4a14;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 9px 11px;
+  border: 1.5px solid #e0d0a8;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  outline: none;
+  background: #fff;
+  color: #2c2135;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #d4a853;
+  box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.18);
+  background: #fff;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.btn-confirm {
+  width: 100%;
+  background: linear-gradient(90deg, #6b2d5b, #8e4580);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 9px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: transform 0.17s, box-shadow 0.17s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 3px 10px rgba(107, 45, 91, 0.3);
+  letter-spacing: 0.2px;
+}
+
+.btn-confirm:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(107, 45, 91, 0.4);
+}
+
+.btn-confirm:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn-confirm:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(107, 45, 91, 0.25);
+}
+
+.btn-confirm:disabled {
+  background: #ccc;
+  box-shadow: none;
+  cursor: not-allowed;
+  color: #999;
+}
+
+/* Success Slip */
+.success-slip {
+  margin-top: 16px;
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  border: 1.5px solid #81c784;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 0.84rem;
+  animation: scaleIn 0.35s ease both;
+}
+
+.success-slip h5 {
+  color: #2e7d32;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.token-highlight {
+  display: inline-block;
+  background: linear-gradient(90deg, #6b2d5b, #8e4580);
+  color: #fff;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin: 6px 0;
+}
+
+/* ==========================================================
+   RECORDS TABLE — Cool steel blue
+   ========================================================== */
+.records-wrapper {
+  max-width: 1240px;
+  margin: 28px auto;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #e8ecf4 0%, #eef1f8 100%);
+  border-radius: 16px;
+  border: 1px solid #c0c8de;
+}
+
+.records-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.records-header h2 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #3a4070;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.records-header h2 i {
+  color: #6673a8;
+}
+
+.btn-clear-all {
+  background: #fff;
+  color: #c62828;
+  border: 1.5px solid #ef9a9a;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.15s;
+}
+
+.btn-clear-all:hover {
+  background: #ffebee;
+  transform: translateY(-1px);
+}
+
+.table-container {
+  background: #fff;
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 2px 10px rgba(58, 64, 112, 0.08);
+  border: 1px solid #d0d6e8;
+}
+
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.86rem;
+}
+
+.appointment-table th {
+  background: linear-gradient(90deg, #e0e4f0, #eaedF5);
+  padding: 12px 14px;
+  border-bottom: 2px solid #c0c8de;
+  color: #3a4070;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.appointment-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #eef0f5;
+  vertical-align: middle;
+  transition: background 0.15s;
+}
+
+.appointment-table tr:last-child td {
+  border-bottom: none;
+}
+
+.appointment-table tr:hover td {
+  background: #f5f6fb;
+}
+
+.token-pill {
+  background: linear-gradient(90deg, #6b2d5b, #8e4580);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.status-confirmed {
+  background: linear-gradient(90deg, #c8e6c9, #a5d6a7);
+  color: #2e7d32;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.btn-delete {
+  background: linear-gradient(90deg, #ef4444, #f87171);
+  color: #fff;
+  border: none;
+  padding: 5px 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: background 0.18s, transform 0.15s;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
+.empty-row {
+  text-align: center;
+  color: #6673a8;
+  padding: 36px !important;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================
+   FOOTER — Deep plum matching nav
+   ========================================================== */
+.page-footer {
+  text-align: center;
+  padding: 22px;
+  background: #e0e4f0;
+  color: black;
+  font-size: 0.84rem;
+  margin-top: 40px;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 860px) {
+  .main-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .right-panel {
+    position: static;
+  }
+
+  .filter-row {
+    grid-template-columns: 1fr;
+  }
+
+  .top-nav {
+    flex-direction: column;
+    height: auto;
+    padding: 12px 20px;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .page-banner {
+    flex-direction: column-reverse;
+    padding: 20px 24px;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .image {
+    height: 100px;
+  }
+}
+
+@media (max-width: 520px) {
+  .doctor-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .doc-action-col {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital & Doctor Appointment Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome for clean icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <i class="fa-solid fa-hospital-user"></i>
+      <span>MediCare</span>
+    </div>
+    <div class="nav-links">
+      <a href="#find-section"><i class="fa-solid fa-user-doctor"></i> Find Doctors</a>
+      <a href="#records-section"><i class="fa-solid fa-list-check"></i> Booked Records (<span
+          id="nav-count">0</span>)</a>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section class="page-banner">
+    <div class="image">
+      <img src="med2.jpg" alt="image hospital" class="image">
+    </div>
+    <div class="main-banner">
+      <h1>Online Hospital & Doctor Appointment System</h1>
+      <p>Select your city, choose a hospital & specialist, and book your appointment directly.</p>
+    </div>
+  </section>
+
+  <!-- Main 2-Column Section -->
+  <main class="main-wrapper" id="find-section">
+
+    <!-- LEFT COLUMN: Search & Available Doctors -->
+    <section class="left-panel">
+
+      <!-- Filter Bar -->
+      <div class="filter-card">
+        <h3><i class="fa-solid fa-filter"></i> Search & Filter</h3>
+
+        <div class="filter-row">
+          <!-- 1. Search City Option -->
+          <div class="form-field">
+            <label for="citySearch"><i class="fa-solid fa-location-dot"></i> Search City</label>
+            <input type="text" id="citySearch" list="citySuggestions" placeholder="Search city (e.g. Delhi, Mumbai)..."
+              onkeyup="onCitySearch()" onchange="onCitySearch()">
+            <datalist id="citySuggestions">
+              <option value="Delhi">
+              <option value="Mumbai">
+              <option value="Bangalore">
+              <option value="Kolkata">
+              <option value="Chennai">
+            </datalist>
+          </div>
+
+          <!-- 2. Search Hospital Option -->
+          <div class="form-field">
+            <label for="hospitalSearch"><i class="fa-solid fa-hospital"></i> Search Hospital</label>
+            <input type="text" id="hospitalSearch" list="hospitalSuggestions"
+              placeholder="Search hospital (e.g. Apollo, AIIMS)..." onkeyup="filterDoctors()"
+              onchange="filterDoctors()">
+            <datalist id="hospitalSuggestions">
+              <!-- Dynamically populated based on city -->
+            </datalist>
+          </div>
+        </div>
+
+        <div class="filter-row">
+          <!-- 3. Specialty Dropdown -->
+          <div class="form-field">
+            <label for="specialtyFilter"><i class="fa-solid fa-stethoscope"></i> Specialty</label>
+            <select id="specialtyFilter" onchange="filterDoctors()">
+              <option value="All">All Specialties</option>
+              <option value="Cardiologist">Cardiologist</option>
+              <option value="Neurologist">Neurologist</option>
+              <option value="Pediatrician">Pediatrician</option>
+              <option value="Orthopedic">Orthopedic</option>
+              <option value="Dermatologist">Dermatologist</option>
+              <option value="General Physician">General Physician</option>
+            </select>
+          </div>
+
+          <!-- 4. Doctor Name Search -->
+          <div class="form-field">
+            <label for="doctorSearch"><i class="fa-solid fa-magnifying-glass"></i> Search by Name</label>
+            <input type="text" id="doctorSearch" placeholder="Type doctor name..." onkeyup="filterDoctors()">
+          </div>
+        </div>
+      </div>
+
+      <!-- Doctor List Header -->
+      <div class="list-header">
+        <h2>Available Doctors (<span id="doctorCount">0</span>)</h2>
+        <span class="tip-text">Click "Select Doctor" to load into the booking form</span>
+      </div>
+
+      <!-- Doctor Cards Container -->
+      <div id="doctorList" class="doctor-list">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN: Direct On-Page Booking Form -->
+    <aside class="right-panel" id="booking-section">
+      <div class="booking-card">
+        <div class="booking-header">
+          <h3><i class="fa-solid fa-calendar-check"></i> Book Appointment</h3>
+          <p>Fill patient details to confirm your slot</p>
+        </div>
+
+        <!-- Selected Doctor Preview Box -->
+        <div class="selected-doc-box" id="selectedDocBox">
+          <div class="box-placeholder">
+            <i class="fa-solid fa-hand-pointer"></i>
+            <p>Please click <strong>"Select Doctor"</strong> from the list on the left.</p>
+          </div>
+        </div>
+
+        <!-- Booking Form -->
+        <form id="appointmentForm" onsubmit="submitAppointment(event)">
+          <!-- Hidden inputs for selected doctor details -->
+          <input type="hidden" id="selectedDocId">
+          <input type="hidden" id="selectedDocName">
+          <input type="hidden" id="selectedHospital">
+          <input type="hidden" id="selectedCity">
+          <input type="hidden" id="selectedSpecialty">
+          <input type="hidden" id="selectedFee">
+
+          <div class="form-group">
+            <label for="patientName">Patient Full Name *</label>
+            <input type="text" id="patientName" required placeholder="e.g. Rahul Sharma">
+          </div>
+
+          <div class="form-group">
+            <label for="patientPhone">Contact Phone Number *</label>
+            <input type="tel" id="patientPhone" required placeholder="e.g. 1234567890" pattern="[0-9]{10}"
+              title="Please enter a valid 10-digit phone number">
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="patientAge">Age *</label>
+              <input type="number" id="patientAge" min="1" max="110" required placeholder="Age">
+            </div>
+
+            <div class="form-group">
+              <label for="patientGender">Gender *</label>
+              <select id="patientGender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="appointmentDate">Appointment Date *</label>
+              <input type="date" id="appointmentDate" required>
+            </div>
+
+            <div class="form-group">
+              <label for="appointmentTime">Preferred Time *</label>
+              <select id="appointmentTime" required>
+                <option value="">Select Time Slot</option>
+                <option value="09:30 AM">09:30 AM (Morning)</option>
+                <option value="11:00 AM">11:00 AM (Morning)</option>
+                <option value="02:30 PM">02:30 PM (Afternoon)</option>
+                <option value="04:30 PM">04:30 PM (Evening)</option>
+                <option value="06:00 PM">06:00 PM (Evening)</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-confirm" id="btnConfirm" disabled>
+            <i class="fa-solid fa-check-circle"></i> Confirm & Book Appointment
+          </button>
+        </form>
+
+        <!-- Success Slip Box (Appears after booking) -->
+        <div id="bookingSuccessBox" class="success-slip" style="display: none;">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- BOTTOM SECTION: Booked Appointments Table -->
+  <section class="records-wrapper" id="records-section">
+    <div class="records-header">
+      <h2><i class="fa-solid fa-clipboard-list"></i> My Booked Appointments</h2>
+      <button class="btn-clear-all" onclick="clearAllAppointments()">Clear All Records</button>
+    </div>
+
+    <div class="table-container">
+      <table class="appointment-table">
+        <thead>
+          <tr>
+            <th>Token No.</th>
+            <th>Patient Details</th>
+            <th>Doctor Name</th>
+            <th>Hospital & City</th>
+            <th>Date & Time</th>
+            <th>Fee</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="appointmentTableBody">
+          <!-- Injected via JavaScript from localStorage -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Simple Footer -->
+  <footer class="page-footer">
+    <p>&copy; 2026 MediCare Online Appointment System | College CA Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
